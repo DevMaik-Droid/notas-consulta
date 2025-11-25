@@ -9,8 +9,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 // <CHANGE> Actualizado metadata para el portal académico
 export const metadata: Metadata = {
   title: "Portal Académico - Consulta de Notas",
-  description: "Consulta tus calificaciones académicas ingresando tu código de estudiante",
-    generator: 'v0.app'
+  description: "Consulta tus calificaciones académicas ingresando tu RU de estudiante"
 }
 
 export default function RootLayout({

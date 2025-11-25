@@ -15,6 +15,10 @@ export function DetalleNotas({ estudiante, onVolver }: DetalleNotasProps) {
 
  
 
+  const notafinal = () =>{
+    return Math.round(estudiante.tAsistencia + estudiante.tPracticas + estudiante.extra)
+  }
+
   const getColorNota = (nota: number) => {
     if (nota >= 8) return "text-[color:var(--color-success)]"
     if (nota >= 5) return "text-[color:var(--color-warning)]"
@@ -22,8 +26,8 @@ export function DetalleNotas({ estudiante, onVolver }: DetalleNotasProps) {
   }
 
   const notas = [
-    { label: "Asistencia", valor: estudiante.tAsistencia - estudiante.pGitHub, icon: CheckCircle },
-    { label: "Prácticas", valor: estudiante.tPracticas, icon: BookOpen },
+    { label: "Asistencia", valor: estudiante.tAsistencia, icon: CheckCircle },
+    { label: "Prácticas", valor: estudiante.tPracticas- estudiante.pGitHub, icon: BookOpen },
     { label: "Practica GitHub", valor: estudiante.pGitHub, icon: BookOpen },
     { label: "Extra", valor: estudiante.extra, icon: Star },
   ]
@@ -69,7 +73,7 @@ export function DetalleNotas({ estudiante, onVolver }: DetalleNotasProps) {
             <TrendingUp className="h-4 w-4 text-primary" />
             <span className="text-xs text-muted-foreground uppercase tracking-wider">Nota Final</span>
           </div>
-          <span className="text-4xl font-bold text-primary font-mono">{estudiante.notaTotal}</span>
+          <span className="text-4xl font-bold text-primary font-mono">{notafinal()}</span>
         </div>
       </CardContent>
     </Card>

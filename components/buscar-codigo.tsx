@@ -31,13 +31,13 @@ export function BuscarCodigo({ onBuscar, error }: BuscarCodigoProps) {
         </div>
         <CardTitle className="text-2xl font-semibold tracking-tight">Acceso al Sistema</CardTitle>
         <p className="text-muted-foreground text-sm mt-2">
-          Ingrese su código de identificación para acceder al registro académico
+          Ingrese su registro universitario para ver resumen
         </p>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="space-y-2">
-            <label className="text-sm text-muted-foreground uppercase tracking-wider">Código de Estudiante</label>
+            <label className="text-sm text-muted-foreground uppercase tracking-wider">RU de Estudiante</label>
             <div className="flex gap-2">
               <Input
                 placeholder="RU"
