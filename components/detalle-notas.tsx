@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, User, CheckCircle, BookOpen, Star, TrendingUp } from "lucide-react"
+import { ArrowLeft, User, CheckCircle, BookOpen, Star, TrendingUp, Award } from "lucide-react"
 import type { Estudiante } from "@/lib/data"
 
 
@@ -15,20 +15,16 @@ export function DetalleNotas({ estudiante, onVolver }: DetalleNotasProps) {
 
  
 
-  const notafinal = () =>{
-    return Math.round(estudiante.tAsistencia + estudiante.tPracticas + estudiante.extra)
-  }
-
   const getColorNota = (nota: number) => {
-    if (nota >= 8) return "text-[color:var(--color-success)]"
-    if (nota >= 5) return "text-[color:var(--color-warning)]"
+    if (nota > 5) return "text-[color:var(--color-success)]"
+    if (nota > 3) return "text-[color:var(--color-warning)]"
     return "text-[color:var(--color-danger)]"
   }
 
   const notas = [
-    { label: "Asistencia", valor: estudiante.tAsistencia, icon: CheckCircle },
-    { label: "Prácticas", valor: estudiante.tPracticas- estudiante.pGitHub, icon: BookOpen },
-    { label: "Practica GitHub", valor: estudiante.pGitHub, icon: BookOpen },
+    { label: "Asistencia", valor: estudiante.asistencia, icon: CheckCircle },
+    { label: "Prácticas", valor: estudiante.practicas, icon: BookOpen },
+    { label: "Practica GitHub", valor: estudiante.practicaOp, icon: BookOpen },
     { label: "Extra", valor: estudiante.extra, icon: Star },
   ]
 
@@ -50,7 +46,8 @@ export function DetalleNotas({ estudiante, onVolver }: DetalleNotasProps) {
           </div>
           <div>
             <CardTitle className="text-xl font-semibold">{estudiante.nombre}</CardTitle>
-            <p className="text-muted-foreground text-sm font-mono mt-1">RU: {estudiante.codigo}</p>
+            <p className="text-muted-foreground text-sm font-mono mt-1">RU:  <span className="font-semibold">{estudiante.ru}</span></p>
+            
           </div>
         </div>
       </CardHeader>
@@ -67,13 +64,20 @@ export function DetalleNotas({ estudiante, onVolver }: DetalleNotasProps) {
             </div>
           ))}
         </div>
-
-        <div className="bg-primary/5 border border-primary/20 rounded-lg p-5 text-center">
+        <div className="bg-purple-400/10 border border-purple-200 rounded-lg p-5 text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
-            <TrendingUp className="h-4 w-4 text-primary" />
-            <span className="text-xs text-muted-foreground uppercase tracking-wider">Nota Final</span>
+            <TrendingUp className="h-4 w-4 text-purple-100" />
+            <span className="text-xs text-muted-foreground uppercase tracking-wider">Nota Acumulada</span>
           </div>
-          <span className="text-4xl font-bold text-primary font-mono">{notafinal()}</span>
+          <span className="text-2xl font-bold text-purple-400 font-mono">{estudiante.acumulado}</span>
+        </div>
+
+        <div className="bg-emerald-500/10 border border-emerald-300 rounded-lg p-5 text-center">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Award className="h-4 w-4 text-emerald-100" />
+            <span className="text-sl font-semibold text-muted-foreground uppercase tracking-wider">Nota Final</span>
+          </div>
+          <span className="text-5xl font-bold text-emerald-400 font-mono">{estudiante.notaTotal}</span>
         </div>
       </CardContent>
     </Card>
